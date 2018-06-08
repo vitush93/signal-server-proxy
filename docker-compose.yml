@@ -16,6 +16,15 @@ services:
     volumes:
       - ./nginx/ssl:/etc/ssl
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - certbot
+
+  certbot:
+    image: certbot/certbot
+    command: "certonly --standalone --agree-tos --preferred-challenges http -d slackuj.cz -m vithabada93@gmail.com"
+    volumes:
+        - ./letsencrypt:/etc/letsencrypt
 
   server:
     build: ./server
