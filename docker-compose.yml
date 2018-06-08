@@ -1,13 +1,21 @@
 version: '3'
 
 services:
-  proxy:
-    build: ./proxy
+  # proxy:
+  #   build: ./proxy
+  #   ports:
+  #     - "9091:9091"
+  #   environment:
+  #     - GATEWAY_IP=172.21.0.1
+  #     - PORT=9091
+
+  nginx:
+    image: nginx:alpine
     ports:
-      - "9091:9091"
-    environment:
-      - GATEWAY_IP=172.19.0.1
-      - PORT=9091
+      - "443:443"
+    volumes:
+      - ./nginx/ssl:/etc/ssl
+      - ./nginx/conf.d:/etc/nginx/conf.d
 
   server:
     build: ./server
