@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  proxy:
+    build: ./proxy
+    ports:
+      - "9091:9091"
+    environment:
+      - GATEWAY_IP=172.19.0.1
+      - PORT=9091
+
+  server:
+    build: ./server
+    ports:
+      - "9090:9090"
