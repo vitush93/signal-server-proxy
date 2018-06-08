@@ -4,10 +4,10 @@ services:
   # proxy:
   #   build: ./proxy
   #   ports:
-  #     - "9091:9091"
+  #     - "443:443"
   #   environment:
   #     - GATEWAY_IP=172.21.0.1
-  #     - PORT=9091
+  #     - PORT=443
 
   nginx:
     image: nginx:alpine

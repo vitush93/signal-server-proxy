@@ -12,7 +12,7 @@ const proxy = httpProxy.createProxyServer({
     }
 });
 
-const port = process.env.PORT || 9091;
+const port = process.env.PORT || 443;
 
 const proxyServer = http.createServer(function (req, res) {
     proxy.web(req, res, { target: 'http://' + process.env.GATEWAY_IP + ':9090/' });
