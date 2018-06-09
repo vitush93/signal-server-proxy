@@ -1,13 +1,6 @@
 version: '3'
 
 services:
-  # proxy:
-  #   build: ./proxy
-  #   ports:
-  #     - "443:443"
-  #   environment:
-  #     - GATEWAY_IP=172.21.0.1
-  #     - PORT=443
 
   nginx:
     image: nginx:alpine
@@ -17,16 +10,8 @@ services:
       - ./nginx/ssl:/etc/ssl
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./letsencrypt:/etc/letsencrypt
-    depends_on:
-      - certbot
 
-  certbot:
-    image: certbot/certbot
-    command: "certonly --standalone --agree-tos --preferred-challenges http -d slackuj.cz -m vithabada93@gmail.com"
-    volumes:
-        - ./letsencrypt:/etc/letsencrypt
-
-  server:
+  signalserver:
     build: ./server
     ports:
       - "9090:9090"
